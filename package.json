@@ -1,5 +1,5 @@
 {
-  "name": "@ascentms/json-typescript-mapper",
+  "name": "ascent-json-typescript-mapper",
   "version": "1.1.4",
   "typescript": {
     "definition": "index.d.ts"
