@@ -1,5 +1,5 @@
 {
-  "name": "ascent-json-typescript-mapper",
+  "name": "@ascentms/json-typescript-mapper",
   "version": "1.1.4",
   "typescript": {
     "definition": "index.d.ts"
@@ -20,7 +20,7 @@
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jf3096/json-typescript-mapper.git"
+    "url": "git+https://github.com/ascentms/json-typescript-mapper.git"
   },
   "keywords": [
     "json-mapper",
