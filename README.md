@@ -144,6 +144,21 @@ This is essential to enable decorator support for your typescript program. Examp
 }
 ```
 
+## Publishing to the Evergreen Packages Registry
+
+To publish a new version of this package to our GitHub packages registry, you'll need to authenticate npm with a GitHub personal access token, pointing to the GitHub packages registry.
+
+You'll need to create a new [personal access token](https://github.com/settings/tokens) with the `repo`, `write:packages`, and `delete:packages` scopes. You can then specify the generated token as your password when authenticating npm:
+
+```sh
+$ npm login  --registry=https://npm.pkg.github.com
+Username: <Your GitHub username>
+Password: <The generated access token>
+Email: <The email associated with your Evergreen GitHub account>
+```
+
+This should generate `~/.npm`, containing an entry that references the GitHub registry and specifies the token you entered as the auth token; consequently, `npm publish` will push new versions to our registry instead of npm's.
+
 ## Test Report
 The test case will be covered in the next push. This caused by inconsistent return type.
 ![alt tag](/git-img/Test Results — spec_index.ts.png)
