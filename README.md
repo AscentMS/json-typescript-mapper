@@ -144,12 +144,6 @@ This is essential to enable decorator support for your typescript program. Examp
 }
 ```
 
-## Local Development
-
-Beyond cloning this repo and running `npm i` to the install the dependencies, this project requires the `GITHUB_TOKEN` environment variable to be exported to the current shell; this is used for publishing this package to our private registry, but it's recommended to create one nonetheless as npm will complain if it's not set.
-
-You'll need to create a new [personal access token](https://github.com/settings/tokens/new) with the `repo`, `write:packages`, and `read:packages` scopes, which you can export to your shell with `export GITHUB_TOKEN=<token>`.
-
 ## Test Report
 The test case will be covered in the next push. This caused by inconsistent return type.
 ![alt tag](/git-img/Test Results — spec_index.ts.png)
