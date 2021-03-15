@@ -1,4 +1,6 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.serialize = exports.deserialize = exports.JsonProperty = void 0;
 require("reflect-metadata");
 var utils_1 = require("./libs/utils");
 /**
@@ -15,7 +17,7 @@ var JSON_META_DATA_KEY = 'JsonProperty';
  * @property {string} name, indicate which json property needed to map
  * @property {string} clazz, if the target is not primitive type, map it to corresponding class
  */
-var DecoratorMetaData = (function () {
+var DecoratorMetaData = /** @class */ (function () {
     function DecoratorMetaData(name, clazz) {
         this.name = name;
         this.clazz = clazz;
@@ -91,7 +93,9 @@ function mapFromJson(decoratorMetadata, instance, json, key) {
         var metadata_1 = getJsonProperty(instance, key);
         if (metadata_1 && metadata_1.clazz || utils_1.isPrimitiveOrPrimitiveClass(clazz)) {
             if (innerJson && utils_1.isArrayOrArrayClass(innerJson)) {
-                return innerJson.map(function (item) { return deserialize(metadata_1.clazz, item); });
+                return innerJson.map(
+                //@ts-ignore
+                function (item) { return deserialize(metadata_1.clazz, item); });
             }
             return;
         }
@@ -139,9 +143,11 @@ function deserialize(Clazz, json) {
          * pass value to instance
          */
         if (decoratorMetaData && decoratorMetaData.customConverter) {
+            //@ts-ignore
             instance[key] = decoratorMetaData.customConverter.fromJson(json[decoratorMetaData.name || key]);
         }
         else {
+            //@ts-ignore
             instance[key] = decoratorMetaData ? mapFromJson(decoratorMetaData, instance, json, key) : json[key];
         }
     });

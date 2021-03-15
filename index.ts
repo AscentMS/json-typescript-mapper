@@ -130,6 +130,7 @@ function mapFromJson<T>(decoratorMetadata: IDecoratorMetaData<any>, instance: T,
         if (metadata && metadata.clazz || isPrimitiveOrPrimitiveClass(clazz)) {
             if (innerJson && isArrayOrArrayClass(innerJson)) {
                 return innerJson.map(
+                    //@ts-ignore
                     (item: any) => deserialize(metadata.clazz!, item)
                 );
             }
@@ -184,8 +185,10 @@ export function deserialize<T extends IGenericObject>(Clazz: {new(): T}, json: I
          * pass value to instance
          */
         if (decoratorMetaData && decoratorMetaData.customConverter) {
+            //@ts-ignore
             instance[key] =  decoratorMetaData.customConverter.fromJson(json[decoratorMetaData.name || key]);
         } else {
+            //@ts-ignore
             instance[key] = decoratorMetaData ? mapFromJson(decoratorMetaData, instance, json, key) : json[key];
         }
 
