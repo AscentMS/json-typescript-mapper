@@ -139,7 +139,11 @@ function mapFromJson<T>(decoratorMetadata: IDecoratorMetaData<any>, instance: T,
             return innerJson;
         }
     }
-
+    //@ts-ignore why would I care if an item is "any" when I'm doing a type-safe comparison?  Sod off.
+    if(clazz['name'] === 'ObjectId'){
+        //special handling for mongo ObjectIds, otherwise it invents one
+        return innerJson;
+    }
     if (!isPrimitiveOrPrimitiveClass(clazz)) {
         return deserialize(clazz, innerJson);
     }

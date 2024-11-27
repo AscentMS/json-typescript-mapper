@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.serialize = exports.deserialize = exports.JsonProperty = void 0;
 require("reflect-metadata");
 var utils_1 = require("./libs/utils");
 /**
@@ -102,6 +101,11 @@ function mapFromJson(decoratorMetadata, instance, json, key) {
         else {
             return innerJson;
         }
+    }
+    //@ts-ignore why would I care if an item is "any" when I'm doing a type-safe comparison?  Sod off.
+    if (clazz['name'] === 'ObjectId') {
+        //special handling for mongo ObjectIds, otherwise it invents one
+        return innerJson;
     }
     if (!utils_1.isPrimitiveOrPrimitiveClass(clazz)) {
         return deserialize(clazz, innerJson);
